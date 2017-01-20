@@ -238,7 +238,7 @@ byte AVT_852::read (byte *buf) {
   _timeoutCheck = SerialAVT.readBytes((char*)header, 1);
   if (!_timeoutCheck) {
     if (_debug) {
-      bluetooth.println("AVT Header Read Timeout ...");
+      debug.println("AVT Header Read Timeout ...");
     }
     return false;
   }
@@ -247,14 +247,14 @@ byte AVT_852::read (byte *buf) {
   bytesToRead = (int) headerLower - 1;
 
   if (_debug) {
-    bluetooth.print("Header: ");
-    bluetooth.println(header, HEX);
-    bluetooth.println();
-    bluetooth.print("UpperByte: ");
-    bluetooth.println(headerUpper, HEX);
-    bluetooth.print("LowerByte: ");
-    bluetooth.println(headerLower, HEX);
-    bluetooth.println();
+    debug.print("Header: ");
+    debug.println(header, HEX);
+    debug.println();
+    debug.print("UpperByte: ");
+    debug.println(headerUpper, HEX);
+    debug.print("LowerByte: ");
+    debug.println(headerLower, HEX);
+    debug.println();
   }
   switch (headerUpper)
   {
@@ -262,30 +262,30 @@ byte AVT_852::read (byte *buf) {
       _timeoutCheck = SerialAVT.readBytes((char*)receiveStatus, 1);
       if (!_timeoutCheck) {
         if (_debug) {
-          bluetooth.println("AVT Recieve Status Read Timeout ...");
+          debug.println("AVT Recieve Status Read Timeout ...");
         }
         return false;
       }
       if (receiveStatus != 0) {
         if (_debug) {
-          bluetooth.println("AVT Receive Status ERROR ...");
+          debug.println("AVT Receive Status ERROR ...");
         }
         return false;
       }
       _timeoutCheck = SerialAVT.readBytes((char*)buf, bytesToRead);
       if (!_timeoutCheck | _timeoutCheck != bytesToRead) {
         if (_debug) {
-          bluetooth.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
+          debug.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
         }
         return false;
       }
       if (_debug) {
-        bluetooth.println("DEBUG:");
+        debug.println("DEBUG:");
         for (int8_t i = 0; i < bytesToRead; i++) {
-          bluetooth.print(buf[i], HEX);
-          bluetooth.print(" ");
+          debug.print(buf[i], HEX);
+          debug.print(" ");
         }
-        bluetooth.println();
+        debug.println();
       }
       break;
     case 1:
@@ -295,7 +295,7 @@ byte AVT_852::read (byte *buf) {
           _timeoutCheck = SerialAVT.readBytes((char*)bytesToRead, 1);
           if (!_timeoutCheck) {
             if (_debug) {
-              bluetooth.println("AVT Header Read Timeout ...");
+              debug.println("AVT Header Read Timeout ...");
             }
             return false;
           }
@@ -303,30 +303,30 @@ byte AVT_852::read (byte *buf) {
           _timeoutCheck = SerialAVT.readBytes((char*)receiveStatus, 1);
           if (!_timeoutCheck) {
             if (_debug) {
-              bluetooth.println("AVT Receive Status Read Timeout ...");
+              debug.println("AVT Receive Status Read Timeout ...");
             }
             return false;
           }
           if (receiveStatus != 0) {
             if (_debug) {
-              bluetooth.println("AVT Receive Status ERROR ...");
+              debug.println("AVT Receive Status ERROR ...");
             }
             return false;
           }
           _timeoutCheck = SerialAVT.readBytes((char*)buf, bytesToRead);
           if (!_timeoutCheck | _timeoutCheck != bytesToRead) {
             if (_debug) {
-              bluetooth.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
+              debug.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
             }
             return false;
           }
           if (_debug) {
-            bluetooth.println("DEBUG:");
+            debug.println("DEBUG:");
             for (int8_t i = 0; i < bytesToRead; i++) {
-              bluetooth.print(buf[i], HEX);
-              bluetooth.print(" ");
+              debug.print(buf[i], HEX);
+              debug.print(" ");
             }
-            bluetooth.println();
+            debug.println();
           }
           break;
         case 2:
@@ -334,7 +334,7 @@ byte AVT_852::read (byte *buf) {
           _timeoutCheck = SerialAVT.readBytes((char*)c, 2);
           if (!_timeoutCheck | _timeoutCheck != 2) {
             if (_debug) {
-              bluetooth.println("AVT Header Read Timeout ...");
+              debug.println("AVT Header Read Timeout ...");
             }
             return false;
           }
@@ -342,30 +342,30 @@ byte AVT_852::read (byte *buf) {
           _timeoutCheck = SerialAVT.readBytes((char*)receiveStatus, 1);
           if (!_timeoutCheck) {
             if (_debug) {
-              bluetooth.println("AVT Receive Status Read Timeout ...");
+              debug.println("AVT Receive Status Read Timeout ...");
             }
             return false;
           }
           if (receiveStatus != 0) {
             if (_debug) {
-              bluetooth.println("AVT Receive Status ERROR ...");
+              debug.println("AVT Receive Status ERROR ...");
             }
             return false;
           }
           _timeoutCheck = SerialAVT.readBytes((char*)buf, bytesToRead);
           if (!_timeoutCheck | _timeoutCheck != bytesToRead) {
             if (_debug) {
-              bluetooth.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
+              debug.println("AVT Did Not Receive # of Bytes Expected, Timeout ...");
             }
             return false;
           }
           if (_debug) {
-            bluetooth.println("DEBUG:");
+            debug.println("DEBUG:");
             for (int8_t i = 0; i < bytesToRead; i++) {
-              bluetooth.print(buf[i], HEX);
-              bluetooth.print(" ");
+              debug.print(buf[i], HEX);
+              debug.print(" ");
             }
-            bluetooth.println();
+            debug.println();
           }
           break;
       }

@@ -8,7 +8,7 @@
 #define AVT_852_h
 
 #include "Arduino.h"
-#define bluetooth Serial1
+#define debug Serial1
 
 class AVT_852 {
 
